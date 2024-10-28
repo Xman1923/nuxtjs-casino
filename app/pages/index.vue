@@ -1,22 +1,29 @@
 <script setup lang="ts">
-const runtimeConfig = useRuntimeConfig()
-const colors = ['#f87171', '#fb923c', '#fbbf24', '#facc15', '#a3e635', '#4ade80', '#34d399', '#2dd4bf', '#22d3ee', '#38bdf8', '#60a5fa', '#818cf8', '#a78bfa', '#c084fc', '#e879f9', '#f472b6', '#fb7185']
-const color = useState('color', () => colors[Math.floor(Math.random() * colors.length)])
+const runtimeConfig = useRuntimeConfig();
+const colors = ['#ff4757', '#ffa502', '#70a1ff', '#1e90ff', '#2ed573', '#ff6348', '#ff6b81']; // Casino temalı renkler
+const color = useState('color', () => colors[Math.floor(Math.random() * colors.length)]);
 </script>
 
 <template>
-  <div class="centered">
+  <div class="casino-centered">
     <h1 :style="{ color }">
-      {{ runtimeConfig.public.helloText }}
+      {{ runtimeConfig.public.welcomeText }}
     </h1>
+    <p>Hoş geldiniz! En popüler oyunlarımızı keşfedin:</p>
+    <ul>
+      <li><NuxtLink to="/slots">Slot Makineleri</NuxtLink></li>
+      <li><NuxtLink to="/blackjack">Blackjack</NuxtLink></li>
+      <li><NuxtLink to="/roulette">Rulet</NuxtLink></li>
+      <li><NuxtLink to="/poker">Poker</NuxtLink></li>
+    </ul>
     <NuxtLink to="/" external>
-      refresh
+      Yenile
     </NuxtLink>
   </div>
 </template>
 
 <style scoped>
-.centered {
+.casino-centered {
   position: absolute;
   width: 100%;
   text-align: center;
@@ -24,18 +31,22 @@ const color = useState('color', () => colors[Math.floor(Math.random() * colors.l
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Arial', sans-serif; /* Daha modern bir font */
+  background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Arka plan için bir gradient */
 }
 h1 {
   font-size: 32px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Metne gölge efekti */
 }
-@media (min-width: 768px) {
-  h1 {
-    font-size: 64px;
-  }
+ul {
+  list-style-type: none; /* Liste işaretlerini kaldır */
+  padding: 0;
+}
+li {
+  margin: 10px 0;
 }
 a {
-  color: #888;
+  color: #1e90ff; /* Link rengi */
   text-decoration: none;
   font-size: 18px;
 }
